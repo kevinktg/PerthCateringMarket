@@ -1,1 +1,235 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perth 2025 Corporate Catering Market Analysis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .section-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .chart-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        .stat-counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Enhanced Hero Section with Pinned Animation -->
+    <section id="hero" class="section-container bg-gradient-to-br from-indigo-900 to-purple-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="hero-content text-center">
+                <h1 class="text-6xl font-bold mb-6 opacity-0" id="main-title">
+                    Perth 2025
+                    <span class="block text-indigo-300">Corporate Catering</span>
+                    <span class="block">Market Analysis</span>
+                </h1>
+                <p class="text-xl opacity-0" id="subtitle">
+                    Comprehensive insights into the evolving corporate catering landscape
+                </p>
+                <div class="mt-8 grid grid-cols-3 gap-8 opacity-0" id="hero-stats">
+                    <div class="text-center">
+                        <div class="stat-counter" data-target="4.33">0</div>
+                        <p>% CAGR Growth</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-counter" data-target="3.58">0</div>
+                        <p>AUD Billion Market</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-counter" data-target="68">0</div>
+                        <p>% Digital Orders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Overview with Staggered Animations -->
+    <section id="market-overview" class="section-container bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700">Market Overview</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="content-block">
+                    <p class="mb-6 text-lg leading-relaxed chart-reveal">
+                        The Australian catering services market reached USD 3.09 billion in 2024, 
+                        with Western Australia contributing significantly to this growth [2].
+                    </p>
+                    <p class="mb-6 text-lg leading-relaxed chart-reveal">
+                        Perth's office market has shown remarkable resilience, with vacancy rates 
+                        decreasing to 15.1% in Q4 2024, supporting increased corporate catering demand [41].
+                    </p>
+                    <p class="mb-6 text-lg leading-relaxed chart-reveal">
+                        Plant-based options now represent over 35% of corporate catering orders, 
+                        driven by one in three Australians consciously limiting meat consumption [52].
+                    </p>
+                </div>
+                <div class="chart-container chart-reveal">
+                    <canvas id="market-chart" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Trends with Timeline Animation -->
+    <section id="technology" class="section-container bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-8 text-indigo-700">Technology Revolution</h2>
+            <div class="timeline-container">
+                <div class="timeline-item" data-year="2020">
+                    <h3>Digital Transformation Begins</h3>
+                    <p>42% of corporate catering moved online during pandemic [3]</p>
+                </div>
+                <div class="timeline-item" data-year="2022">
+                    <h3>AI and Automation</h3>
+                    <p>Machine learning menu recommendations reduce decision fatigue [14]</p>
+                </div>
+                <div class="timeline-item" data-year="2024">
+                    <h3>Full Integration</h3>
+                    <p>68% of corporate catering now ordered through digital platforms [14]</p>
+                </div>
+                <div class="timeline-item" data-year="2025">
+                    <h3>Future Innovations</h3>
+                    <p>IoT temperature monitoring and blockchain traceability [19]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero section pinned animation
+        const heroTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top",
+                pin: true,
+                scrub: 1
+            }
+        });
+
+        heroTimeline
+            .from("#main-title", {
+                opacity: 0,
+                y: 100,
+                duration: 1,
+                ease: "power2.out"
+            })
+            .from("#subtitle", {
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.5")
+            .from("#hero-stats", {
+                opacity: 0,
+                y: 30,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3");
+
+        // Animated counters for hero stats
+        function animateCounter(element, target) {
+            gsap.to(element, {
+                innerHTML: target,
+                duration: 2,
+                ease: "power2.out",
+                snap: { innerHTML: 0.1 },
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        }
+
+        document.querySelectorAll('.stat-counter').forEach(counter => {
+            const target = parseFloat(counter.dataset.target);
+            animateCounter(counter, target);
+        });
+
+        // Staggered reveal animations for content blocks
+        gsap.from(".chart-reveal", {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: "#market-overview",
+                start: "top 70%",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // Timeline animation with ScrollTrigger
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        gsap.set(timelineItems, {
+            opacity: 0,
+            x: -100
+        });
+
+        ScrollTrigger.batch(timelineItems, {
+            onEnter: (elements) => {
+                gsap.to(elements, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    stagger: 0.3,
+                    ease: "power2.out"
+                });
+            },
+            onLeave: (elements) => {
+                gsap.to(elements, {
+                    opacity: 0.3,
+                    duration: 0.5
+                });
+            },
+            onEnterBack: (elements) => {
+                gsap.to(elements, {
+                    opacity: 1,
+                    duration: 0.5
+                });
+            }
+        });
+
+        // Smooth scroll behavior
+        gsap.to(window, {
+            duration: 0.8,
+            scrollTo: { y: 0 },
+            ease: "power2.inOut"
+        });
+
+        // Parallax effects for background elements
+        gsap.utils.toArray('.section-container').forEach(section => {
+            gsap.fromTo(section, {
+                backgroundPosition: "50% 100%"
+            }, {
+                backgroundPosition: "50% 0%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+    </script>
+</body>
+</html>
