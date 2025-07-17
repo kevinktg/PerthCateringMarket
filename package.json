@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "homepage": "https://kevinktg.github.io/PerthCateringMarket",
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  }
+}
