@@ -1,1 +1,39 @@
+/* styles.css */
+/* You can leave this empty if only using Tailwind! But here are examples: */
+
+.section-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.chart-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.stat-counter {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #4f46e5; /* Use this for a consistent accent */
+}
+
+/* Timeline tweaks */
+.timeline-item {
+    margin-bottom: 2em;
+    background: #fff;
+    border-left: 6px solid #6366f1;
+    padding: 1em 2em;
+    border-radius: 0.5em;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+}
+
+/* Responsive helper example */
+@media (max-width: 640px) {
+    .section-container {
+        flex-direction: column;
+        padding: 2em 1em;
+    }
+}
 
